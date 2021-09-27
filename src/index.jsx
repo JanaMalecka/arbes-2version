@@ -10,9 +10,6 @@ const App = () => (
       <h1>Contact form</h1>
       <Form />
     </section>
-    <section>
-      <Table />
-    </section>
   </>
 );
 
