@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "react": "^17.0.2",
+    "react-data-table-component": "^7.3.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.16.1",
+    "styled-components": "^5.3.1",
     "validator": "^13.6.0"
   }
 }

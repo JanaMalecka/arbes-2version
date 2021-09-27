@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import Table from '../Table';
+import DataTable from 'react-data-table-component';
 
 const Form = (props) => {
   const [userName, setUserName] = useState('');
@@ -16,6 +17,40 @@ const Form = (props) => {
     setPhone(e.target.value);
     setComment(e.target.value);
   };
+
+  const columns = [
+    {
+      name: 'ID',
+      selector: (row) => row.id,
+    },
+    {
+      name: 'Name',
+      selector: (row) => row.name,
+    },
+    {
+      name: 'Surname',
+      selector: (row) => row.surname,
+    },
+    {
+      name: 'Phone',
+      selector: (row) => row.phone,
+    },
+    {
+      name: 'Comment',
+      selector: (row) => row.comment,
+    },
+  ];
+
+  const data = [
+    {
+      /*  id: { surname }, */
+      name: { userName },
+      surname: { surname },
+      phone: { phone },
+      comment: { comment },
+    },
+  ];
+
   return (
     <>
       <form onSubmit={handleSubmit}>
