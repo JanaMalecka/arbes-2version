@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import './style.css';
-import DataTable from 'react-data-table-component';
+import DataTable from 'react-data-table-component'; */
 
 /* const columns = [
   {
@@ -23,9 +23,19 @@ import DataTable from 'react-data-table-component';
     name: 'Comment',
     selector: (row) => row.comment,
   },
-]; */
+]; 
 
-const Table = (props) => {
+  const data = [
+    {
+      /*  id: { surname }, */
+/*name: { userName },
+      surname: { surname },
+      phone: { phone },
+      comment: { comment },
+    },
+  ];*/
+
+/*const Table = (props) => {
   return (
     <>
       <div>Table</div>
@@ -36,4 +46,4 @@ const Table = (props) => {
   );
 };
 //https://jbetancur.github.io/react-data-table-component/?path=/story/getting-started-examples--page
-export default Table;
+export default Table;*/

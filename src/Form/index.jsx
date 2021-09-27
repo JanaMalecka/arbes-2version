@@ -1,9 +1,44 @@
 import React, { useState } from 'react';
 import './style.css';
-import Table from '../Table';
+/* import Table from '../Table'; */
 import DataTable from 'react-data-table-component';
 
-const Form = (props) => {
+const columns = [
+  {
+    name: 'ID',
+    selector: (row) => row.id,
+  },
+  {
+    name: 'Name',
+    selector: (row) => row.name,
+  },
+  {
+    name: 'Surname',
+    selector: (row) => row.surname,
+  },
+  {
+    name: 'Phone',
+    selector: (row) => row.phone,
+  },
+  {
+    name: 'Comment',
+    selector: (row) => row.comment,
+  },
+];
+
+const data = [
+  {
+    /*  id: { surname },
+    name: { userName },
+    surname: { surname },
+    phone: { phone },
+    comment: { comment },*/
+    name: 'Jana',
+    surname: 'Malecka',
+  },
+];
+
+const Form = () => {
   const [userName, setUserName] = useState('');
   const [surname, setSurname] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,39 +53,6 @@ const Form = (props) => {
     setComment(e.target.value);
   };
 
-  const columns = [
-    {
-      name: 'ID',
-      selector: (row) => row.id,
-    },
-    {
-      name: 'Name',
-      selector: (row) => row.name,
-    },
-    {
-      name: 'Surname',
-      selector: (row) => row.surname,
-    },
-    {
-      name: 'Phone',
-      selector: (row) => row.phone,
-    },
-    {
-      name: 'Comment',
-      selector: (row) => row.comment,
-    },
-  ];
-
-  const data = [
-    {
-      /*  id: { surname }, */
-      name: { userName },
-      surname: { surname },
-      phone: { phone },
-      comment: { comment },
-    },
-  ];
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -59,10 +61,10 @@ const Form = (props) => {
         <br />
         <input
           required
-          onChange={(e) => setUserName(e.target.value)}
+          /* onChange={(e) => setUserName(e.target.value)} */
           name="name"
           type="name"
-          value={props.userName}
+          /* value={userName} */
         ></input>
 
         <br />
@@ -70,30 +72,30 @@ const Form = (props) => {
         <br />
         <input
           required
-          value={props.surname}
+          /*  value={surname} */
           type="text"
           name="lname"
-          onChange={(e) => setSurname(e.target.value)}
+          /* onChange={(e) => setSurname(e.target.value)} */
         ></input>
         <br />
         <label>Phone number: </label>
         <br />
         <input
           required
-          value={props.phone}
+          /*  value={phone} */
           type="tel"
           name="phone"
-          onChange={(e) => setPhone(e.target.value)}
+          /* onChange={(e) => setPhone(e.target.value)} */
         ></input>
         <br />
         <label>Comment: </label>
         <br />
         <textarea
-          onChange={(e) => setComment(e.target.value)}
+          /* onChange={(e) => setComment(e.target.value)} */
           name="comment"
           rows="5"
           cols="23"
-          value={props.comment}
+          /* value={comment} */
         ></textarea>
         <br />
         <button
@@ -107,12 +109,13 @@ const Form = (props) => {
       </form>
       <hr />
       <section>
-        <Table
+        {/* <Table
           userName={userName}
           surname={surname}
           phone={phone}
           comment={comment}
-        />
+        /> */}
+        <DataTable columns={columns} data={data} />
       </section>
     </>
   );
