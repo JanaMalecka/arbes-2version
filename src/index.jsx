@@ -7,7 +7,7 @@ import Table from './Table';
 const App = () => (
   <>
     <section>
-      <h1>Contact form</h1>
+      <h1>Add New Contact</h1>
       <Form />
     </section>
   </>

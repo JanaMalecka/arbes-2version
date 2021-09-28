@@ -1,126 +1,115 @@
 import React, { useState } from 'react';
 import './style.css';
 /* import Table from '../Table'; */
-import DataTable from 'react-data-table-component';
-
-const columns = [
-  {
-    name: 'ID',
-    selector: (row) => row.id,
-  },
-  {
-    name: 'Name',
-    selector: (row) => row.name,
-  },
-  {
-    name: 'Surname',
-    selector: (row) => row.surname,
-  },
-  {
-    name: 'Phone',
-    selector: (row) => row.phone,
-  },
-  {
-    name: 'Comment',
-    selector: (row) => row.comment,
-  },
-];
-
-const data = [
-  {
-    /*  id: { surname },
-    name: { userName },
-    surname: { surname },
-    phone: { phone },
-    comment: { comment },*/
-    name: 'Jana',
-    surname: 'Malecka',
-  },
-];
+/*import DataTable from 'react-data-table-component';*/
 
 const Form = () => {
-  const [userName, setUserName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [phone, setPhone] = useState('');
-  const [comment, setComment] = useState('');
+  const [contacts, setContacts] = useState('');
+  const [addFormData, setAddFormData] = useState({
+    name: '',
+    surname: '',
+    phone: '',
+    comment: '',
+  });
 
-  const handleSubmit = (e) => {
+  const handleAddFormChange = (e) => {
     e.preventDefault();
-    /*  console.log(`${userName} ${surname} ${phone} ${comment}`); */
-    setUserName(e.target.value);
-    setSurname(e.target.value);
-    setPhone(e.target.value);
-    setComment(e.target.value);
+
+    const fieldName = e.target.getAttribute('name');
+    const fieldValue = e.target.value;
+
+    const newFormData = { ...addFormData };
+    newFormData[fieldName] = fieldValue;
+
+    setAddFormData(newFormData);
+  };
+
+  const handleAddFormSubmit = (e) => {
+    e.preventDefault();
+
+    const newContact = {
+      /*  id:  */
+      name: addFormData.name,
+      surname: addFormData.surname,
+      phone: addFormData.phone,
+      comment: addFormData.comment,
+    };
+
+    const newContacts = [...contacts, newContact];
+    setContacts(newContacts);
   };
 
   return (
     <>
-      <form /* onSubmit={handleSubmit} */>
+      <form onSubmit={handleAddFormSubmit}>
         <label>Name: </label>
 
         <br />
         <input
-          required
-          onChange={(e) => setUserName(e.target.value)}
+          required="required"
+          onChange={handleAddFormChange}
           name="name"
-          type="name"
-          value={userName}
+          type="text"
         ></input>
 
         <br />
         <label>Surname: </label>
         <br />
         <input
-          required
-          value={surname}
+          required="required"
           type="text"
-          name="lname"
-          onChange={(e) => setSurname(e.target.value)}
+          name="surname"
+          onChange={handleAddFormChange}
         ></input>
         <br />
         <label>Phone number: </label>
         <br />
         <input
-          required
-          value={phone}
+          required="required"
           type="tel"
           name="phone"
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={handleAddFormChange}
         ></input>
         <br />
         <label>Comment: </label>
         <br />
         <textarea
-          onChange={(e) => setComment(e.target.value)}
+          onChange={handleAddFormChange}
           name="comment"
           rows="5"
           cols="23"
-          value={comment}
         ></textarea>
         <br />
         <button
-          disabled={
-            userName.length === 0 || surname.length === 0 || phone.length === 0
-              ? true
-              : false
-          }
-          onClick={handleSubmit}
+          /*  onClick={handleSubmit} */
           className="btn"
           type="submit"
         >
-          Submit
+          Add
         </button>
       </form>
       <hr />
       <section>
-        <div>{userName} </div>
-        {/* <Table
-          userName={userName}
-          surname={surname}
-          phone={phone}
-          comment={comment}
-        /> */}
-        <DataTable columns={columns} data={data} />
+        <div className="app-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </>
   );
