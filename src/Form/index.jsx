@@ -55,16 +55,16 @@ const Form = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form /* onSubmit={handleSubmit} */>
         <label>Name: </label>
 
         <br />
         <input
           required
-          /* onChange={(e) => setUserName(e.target.value)} */
+          onChange={(e) => setUserName(e.target.value)}
           name="name"
           type="name"
-          /* value={userName} */
+          value={userName}
         ></input>
 
         <br />
@@ -72,34 +72,38 @@ const Form = () => {
         <br />
         <input
           required
-          /*  value={surname} */
+          value={surname}
           type="text"
           name="lname"
-          /* onChange={(e) => setSurname(e.target.value)} */
+          onChange={(e) => setSurname(e.target.value)}
         ></input>
         <br />
         <label>Phone number: </label>
         <br />
         <input
           required
-          /*  value={phone} */
+          value={phone}
           type="tel"
           name="phone"
-          /* onChange={(e) => setPhone(e.target.value)} */
+          onChange={(e) => setPhone(e.target.value)}
         ></input>
         <br />
         <label>Comment: </label>
         <br />
         <textarea
-          /* onChange={(e) => setComment(e.target.value)} */
+          onChange={(e) => setComment(e.target.value)}
           name="comment"
           rows="5"
           cols="23"
-          /* value={comment} */
+          value={comment}
         ></textarea>
         <br />
         <button
-          disabled={!userName || !surname || !phone}
+          disabled={
+            userName.length === 0 || surname.length === 0 || phone.length === 0
+              ? true
+              : false
+          }
           onClick={handleSubmit}
           className="btn"
           type="submit"
@@ -109,6 +113,7 @@ const Form = () => {
       </form>
       <hr />
       <section>
+        <div>{userName} </div>
         {/* <Table
           userName={userName}
           surname={surname}
