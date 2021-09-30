@@ -4,7 +4,7 @@ import './style.css';
 /*import DataTable from 'react-data-table-component';*/
 
 const Form = () => {
-  const [contacts, setContacts] = useState('');
+  const [contacts, setContacts] = useState([]);
   const [addFormData, setAddFormData] = useState({
     name: '',
     surname: '',
@@ -80,11 +80,7 @@ const Form = () => {
           cols="23"
         ></textarea>
         <br />
-        <button
-          /*  onClick={handleSubmit} */
-          className="btn"
-          type="submit"
-        >
+        <button onSubmit={handleAddFormSubmit} className="btn" type="submit">
           Add
         </button>
       </form>
@@ -101,12 +97,16 @@ const Form = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              {contacts.map((contact) => (
+                <tr>
+                  <td>
+                    {contact.surname.toUpperCase()}_{contact.name.toUpperCase()}
+                  </td>
+                  <td>{`${contact.name} ${contact.surname}`}</td>
+                  <td>{contact.phone}</td>
+                  <td>{contact.comment}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
