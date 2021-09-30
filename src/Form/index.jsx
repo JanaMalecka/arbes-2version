@@ -100,7 +100,15 @@ const Form = () => {
               {contacts.map((contact) => (
                 <tr>
                   <td>
-                    {contact.surname.toUpperCase()}_{contact.name.toUpperCase()}
+                    {contact.surname
+                      .toUpperCase()
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')}
+                    _
+                    {contact.name
+                      .toUpperCase()
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')}
                   </td>
                   <td>{`${contact.name} ${contact.surname}`}</td>
                   <td>{contact.phone}</td>
