@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import './style.css';
 /* import Table from '../Table'; */
 /*import DataTable from 'react-data-table-component';*/
+import validator from 'validator';
+
+const initialState = {
+  name: '',
+  surname: '',
+  phone: '',
+  comment: '',
+  phoneError: '',
+};
 
 const Form = () => {
   const [contacts, setContacts] = useState([]);
   const [addFormData, setAddFormData] = useState({
-    name: '',
-    surname: '',
-    phone: '',
-    comment: '',
+    initialState,
   });
 
   const handleAddFormChange = (e) => {
@@ -22,6 +28,20 @@ const Form = () => {
     newFormData[fieldName] = fieldValue;
 
     setAddFormData(newFormData);
+  };
+
+  const validate = () => {
+    let phoneError = '';
+
+    if (this.state.phone.length !== 9 || this.state.phone.length !== 12) {
+      phoneError = 'invalid phone number';
+    }
+
+    if (phoneError) {
+      this.setState({ phoneError });
+      return false;
+    }
+    return true;
   };
 
   const handleAddFormSubmit = (e) => {
@@ -37,6 +57,13 @@ const Form = () => {
 
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
+
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      //clear form
+      this.setState(initialState);
+    }
   };
 
   return (
@@ -70,6 +97,11 @@ const Form = () => {
           name="phone"
           onChange={handleAddFormChange}
         ></input>
+        {this.state.phoneError ? (
+          <div style={{ fontSize: 12, color: 'red' }}>
+            {this.state.phoneError}
+          </div>
+        ) : null}
         <br />
         <label>Comment: </label>
         <br />
